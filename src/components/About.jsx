@@ -32,16 +32,21 @@ const About = () => {
             About Us
           </motion.h2>
           
-          <motion.div variants={item} className="space-y-6 text-center max-w-4xl mx-auto">
+          <motion.div variants={item} className="space-y-8 text-center max-w-4xl mx-auto">
             <p className="font-body text-lg sm:text-xl text-text-dark leading-relaxed">
-              OZ LAB (Opportunity Zone LAB) is a university startup club dedicated to fostering 
-              innovation and entrepreneurship among students. We provide a platform where ambitious 
-              minds can collaborate, learn, and bring their ideas to life.
+              OZ LAB (Opportunity Zone LAB) is where student entrepreneurs transform bold ideas into 
+              real-world impact. We're not just a club—we're a launchpad for the next generation of 
+              innovators, creators, and change-makers.
             </p>
             <p className="font-body text-lg sm:text-xl text-text-dark leading-relaxed">
-              Our mission is to create an environment that challenges conventional thinking while 
-              providing the resources and support needed to transform dreams into successful ventures. 
-              We believe in the power of opportunity and the potential within every student.
+              Through hands-on projects, mentorship, and a collaborative community, we bridge the gap 
+              between academic learning and entrepreneurial execution. Whether you're building your 
+              first prototype, seeking co-founders, or exploring emerging technologies, OZ LAB provides 
+              the resources, network, and support to turn your vision into reality.
+            </p>
+            <p className="font-body text-lg sm:text-xl text-text-dark/90 leading-relaxed italic">
+              Every breakthrough starts with opportunity. We create the zone where possibilities become 
+              achievements.
             </p>
           </motion.div>
 
@@ -49,22 +54,25 @@ const About = () => {
             variants={item}
             className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16"
           >
-            <div className="text-center p-6 bg-bg-primary/50 rounded-lg">
-              <h3 className="font-heading text-3xl text-accent mb-3">Innovate</h3>
-              <p className="font-body text-text-dark">
-                Push boundaries and explore new possibilities
+            <div className="text-center p-8 bg-bg-primary/50 rounded-lg hover:bg-bg-primary/70 transition-colors">
+              <h3 className="font-heading text-3xl text-accent mb-4">Build</h3>
+              <p className="font-body text-text-dark leading-relaxed">
+                From concept to prototype, we provide the tools and guidance to bring your ideas to life. 
+                Access workshops, technical resources, and expert mentorship.
               </p>
             </div>
-            <div className="text-center p-6 bg-bg-primary/50 rounded-lg">
-              <h3 className="font-heading text-3xl text-accent mb-3">Collaborate</h3>
-              <p className="font-body text-text-dark">
-                Work together to achieve greater impact
+            <div className="text-center p-8 bg-bg-primary/50 rounded-lg hover:bg-bg-primary/70 transition-colors">
+              <h3 className="font-heading text-3xl text-accent mb-4">Connect</h3>
+              <p className="font-body text-text-dark leading-relaxed">
+                Join a diverse community of ambitious students, industry professionals, and alumni. 
+                Find co-founders, advisors, and lifelong collaborators.
               </p>
             </div>
-            <div className="text-center p-6 bg-bg-primary/50 rounded-lg">
-              <h3 className="font-heading text-3xl text-accent mb-3">Elevate</h3>
-              <p className="font-body text-text-dark">
-                Rise above challenges and reach new heights
+            <div className="text-center p-8 bg-bg-primary/50 rounded-lg hover:bg-bg-primary/70 transition-colors">
+              <h3 className="font-heading text-3xl text-accent mb-4">Launch</h3>
+              <p className="font-body text-text-dark leading-relaxed">
+                Take your project from prototype to market. We offer pitch opportunities, funding 
+                connections, and pathways to real-world deployment.
               </p>
             </div>
           </motion.div>

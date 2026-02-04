@@ -79,51 +79,55 @@ const Hero = () => {
             }
           }}
         >
-          <motion.span 
-            className="font-heading select-none text-text-primary/30"
-            style={{ 
-              fontSize: 'clamp(8.5rem, 29.75vw, 25.5rem)',
-              position: 'absolute',
-              top: '5%',
-              left: 0,
-              whiteSpace: 'nowrap',
-              transform: 'translateY(-50%)'
-            }}
-            initial={{ x: '100vw' }}
-            animate={{ 
-              x: ['100vw', '-100vw']
-            }}
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: "linear"
+          {/* OPPORTUNITY marquee (right -> left, seamless infinite loop) */}
+          <div
+            className="absolute left-0 right-0 overflow-hidden"
+            style={{
+              top: '30%',
+              transform: 'translateY(-50%)',
             }}
           >
-            OPPORTUNITY
-          </motion.span>
-          <motion.span 
-            className="font-heading select-none text-text-primary/30"
-            style={{ 
-              fontSize: 'clamp(8.5rem, 29.75vw, 25.5rem)',
-              position: 'absolute',
-              top: '50%',
-              right: 0,
-              whiteSpace: 'nowrap',
-              transform: 'translateY(-50%)'
-            }}
-            initial={{ x: '-100vw' }}
-            animate={{ 
-              x: ['-100vw', '100vw']
-            }}
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: "linear",
-              delay: 3
+            <div
+              className="flex font-heading select-none text-text-primary/30"
+              style={{
+                fontSize: 'clamp(9.5rem, 32vw, 28rem)',
+                whiteSpace: 'nowrap',
+                marginLeft: 'auto',
+                width: 'fit-content',
+                animation: 'scroll-left 24s linear infinite',
+              }}
+            >
+              <span style={{ display: 'inline-block', paddingLeft: '8vw' }}>OPPORTUNITY</span>
+              <span style={{ display: 'inline-block', paddingLeft: '8vw' }}>OPPORTUNITY</span>
+              <span style={{ display: 'inline-block', paddingLeft: '8vw' }}>OPPORTUNITY</span>
+              <span style={{ display: 'inline-block', paddingLeft: '8vw' }}>OPPORTUNITY</span>
+            </div>
+          </div>
+
+          {/* ZONE marquee (left -> right, seamless infinite loop) */}
+          <div
+            className="absolute left-0 right-0 overflow-hidden"
+            style={{
+              top: '64%',
+              transform: 'translateY(-50%)',
             }}
           >
-            ZONE
-          </motion.span>
+            <div
+              className="flex font-heading select-none text-text-primary/30"
+              style={{
+                fontSize: 'clamp(9.5rem, 32vw, 28rem)',
+                whiteSpace: 'nowrap',
+                marginLeft: 'auto',
+                width: 'fit-content',
+                animation: 'scroll-right 12s linear infinite',
+              }}
+            >
+              <span style={{ display: 'inline-block', paddingLeft: '12vw' }}>ZONE</span>
+              <span style={{ display: 'inline-block', paddingLeft: '12vw' }}>ZONE</span>
+              <span style={{ display: 'inline-block', paddingLeft: '12vw' }}>ZONE</span>
+              <span style={{ display: 'inline-block', paddingLeft: '12vw' }}>ZONE</span>
+            </div>
+          </div>
         </motion.div>
       </motion.div>
 
@@ -136,14 +140,6 @@ const Hero = () => {
         >
           OZ LAB
         </motion.h1>
-        <motion.p 
-          className="font-body text-base sm:text-lg text-text-dark/80 max-w-2xl mx-auto"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
-        >
-          Empowering student entrepreneurs to transform ideas into reality
-        </motion.p>
       </div>
 
       {/* Scroll indicator */}
