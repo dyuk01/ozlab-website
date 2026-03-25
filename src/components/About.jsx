@@ -13,7 +13,7 @@ const About = () => {
         '스터디 트랙은 아래와 같으며, 각 트랙은 매주 세션과 과제를 통해 성장합니다. 실력을 쌓고 동기를 얻는 시간이 될 거예요.'
       ],
       tracks: ['Backend', 'Frontend', 'AI', 'UI/UX', '코딩테스트 준비'],
-      cta: { label: '스터디팀 자세히 알아보기 →', href: '#' }
+      cta: { label: '스터디팀 자세히 알아보기 →', href: '/members' }
     },
     projects: {
       title: 'Projects',
