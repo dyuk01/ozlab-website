@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { publicAsset } from '../utils/publicAsset';
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('studies');
@@ -226,11 +227,25 @@ const About = () => {
               <div className="bg-white border border-text-dark/12 rounded-[1.75rem] sm:rounded-[2rem] p-8 sm:p-10 shadow-sm flex-1 flex flex-col">
                 {activeTab === 'studies' && (
                   <div className="flex flex-wrap items-center gap-5 sm:gap-8 mb-8">
-                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-text-dark/10 bg-amber-50 font-body text-xs text-text-dark/60">
-                      LOGO
+                    <div className="flex h-16 w-16 shrink-0 items-center justify-center">
+                      <img
+                        src={publicAsset('assets/images/oz_logo.webp')}
+                        alt="OZ LAB"
+                        className="h-full w-full object-contain"
+                        width={64}
+                        height={64}
+                        decoding="async"
+                      />
                     </div>
-                    <div className="flex h-12 min-w-[140px] items-center justify-center rounded-lg bg-[#ff6b35] px-4 font-body text-xs font-medium text-white">
-                      멋쟁이사자처럼
+                    <div className="flex h-12 min-h-[3rem] min-w-0 max-w-[220px] items-center justify-center sm:max-w-[260px]">
+                      <img
+                        src={publicAsset('assets/images/ms_logo.webp')}
+                        alt="멋쟁이사자처럼"
+                        className="h-10 w-auto max-w-full object-contain object-left sm:h-12"
+                        width={200}
+                        height={48}
+                        decoding="async"
+                      />
                     </div>
                   </div>
                 )}

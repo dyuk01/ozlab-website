@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { publicAsset } from '../utils/publicAsset';
 
 const projectLinks = [
   { label: 'Fluention', to: '/projects#fluention' },
@@ -106,13 +107,21 @@ const Navigation = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="w-full px-4 sm:px-8 lg:px-12 py-4 flex justify-between items-center">
+      <div className="flex w-full items-center justify-between px-4 py-0 sm:px-8 sm:py-0.5 lg:px-12">
         <Link
           to="/"
           onClick={handleLinkClick}
-          className="font-heading text-3xl text-text-dark hover:text-accent transition-colors leading-none"
+          className="flex h-16 w-16 shrink-0 items-center justify-center leading-none transition-opacity hover:opacity-90 sm:h-20 sm:w-20"
+          aria-label="OZ LAB home"
         >
-          Ø
+          <img
+            src={publicAsset('assets/images/oz_logo.webp')}
+            alt=""
+            className="block h-full w-full object-contain"
+            width={80}
+            height={80}
+            decoding="async"
+          />
         </Link>
 
         <ul ref={desktopNavRef} className="hidden md:flex gap-5 lg:gap-8 items-center">
