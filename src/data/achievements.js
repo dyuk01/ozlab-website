@@ -1,44 +1,41 @@
+/**
+ * 위→아래 표시 순서. side: 타임라인 기준 카드 위치
+ */
 export const achievements = [
   {
     id: 1,
-    year: 2024,
-    title: "National Startup Competition Winner",
-    description: "First place in the prestigious National University Startup Challenge",
-    category: "Competition"
+    order: 1,
+    side: 'left',
+    dateLabel: '2025.11',
+    title: '멋사 아이디어톤 우승',
+    description:
+      'ADHD-friendly AI 학습 에이전트 Omniscient 프로젝트로 멋쟁이사자처럼 전국 아이디어톤 최종 우승'
   },
   {
     id: 2,
-    year: 2024,
-    title: "500+ Active Members",
-    description: "Reached a milestone of 500 active members in our community",
-    category: "Community"
+    order: 2,
+    side: 'left',
+    dateLabel: '2025.03',
+    title: 'Boilermake 해커톤 수상',
+    description:
+      '건설 현장 안전을 위한 AI 기반 PPE 모니터링 시스템 Site Sentinel 프로젝트로 Caterpillar Best Cloud Implementation 3위 수상 (오즈 멤버 참여)'
   },
   {
     id: 3,
-    year: 2023,
-    title: "Tech Innovation Award",
-    description: "Recognized for outstanding innovation in educational technology",
-    category: "Award"
+    order: 3,
+    side: 'right',
+    dateLabel: '2025.03',
+    title: 'Boilermake 해커톤 수상',
+    description:
+      '언어장애 보조 AI 서비스 Fluention으로 Boilermaker Hackathon (500+ 참가자) 3위 수상'
   },
   {
     id: 4,
-    year: 2023,
-    title: "20+ Projects Launched",
-    description: "Successfully launched over 20 projects from concept to deployment",
-    category: "Projects"
-  },
-  {
-    id: 5,
-    year: 2023,
-    title: "Industry Partnerships",
-    description: "Established partnerships with 10+ leading tech companies",
-    category: "Partnerships"
-  },
-  {
-    id: 6,
-    year: 2022,
-    title: "Founding Year",
-    description: "OZ LAB was founded with a vision to empower student entrepreneurs",
-    category: "Milestone"
+    order: 4,
+    side: 'right',
+    dateLabel: '2025.01',
+    title: 'InnovateHer 해커톤 우승',
+    description:
+      '딥페이크 피해자 지원 AI 플랫폼 DeepShield로 InnovateHer Hackathon 최종 우승 (1위)'
   }
 ];

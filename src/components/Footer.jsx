@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Linkedin, Github, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,7 +10,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-bg-primary border-t border-accent/20 py-12 px-4 sm:px-6 lg:px-8">
+    <footer className="relative z-10 bg-bg-primary border-t border-accent/20 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
@@ -25,52 +26,36 @@ const Footer = () => {
             <h4 className="font-heading text-lg text-text-dark mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <a 
-                  href="#about" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
+                <Link
+                  to="/about-oz"
                   className="font-body text-text-dark/80 hover:text-accent transition-colors text-sm"
                 >
-                  About
-                </a>
+                  About OZ
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#projects" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
+                <Link
+                  to="/projects"
                   className="font-body text-text-dark/80 hover:text-accent transition-colors text-sm"
                 >
                   Projects
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#team" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector('#team')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
+                <Link
+                  to="/members"
                   className="font-body text-text-dark/80 hover:text-accent transition-colors text-sm"
                 >
-                  Team
-                </a>
+                  Members
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#contact" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
+                <Link
+                  to="/achievements"
                   className="font-body text-text-dark/80 hover:text-accent transition-colors text-sm"
                 >
-                  Contact
-                </a>
+                  Achievements
+                </Link>
               </li>
             </ul>
           </div>

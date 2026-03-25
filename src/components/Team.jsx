@@ -1,83 +1,89 @@
-import { motion } from 'framer-motion';
-import { Linkedin, Github } from 'lucide-react';
-import { team } from '../data/team';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { memberSections } from '../data/members';
 
-const Team = () => {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0 }
-  };
+const MemberCard = ({ member }) => {
+  const hasRole = member.role?.trim();
+  const hasName = member.name?.trim();
+  const hasMajor = member.major?.trim();
+  const emails = member.emails?.filter(Boolean) ?? [];
 
   return (
-    <section id="team" className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-bg-secondary">
-      <div className="max-w-7xl mx-auto">
-        <motion.h2 
-          className="font-heading text-5xl sm:text-6xl md:text-7xl text-text-primary text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          Our Team
-        </motion.h2>
-        
-        <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {team.map((member, index) => (
-            <motion.div
-              key={member.id}
-              variants={item}
-              className="group text-center"
-            >
-              <div className="relative mb-6 overflow-hidden rounded-full w-48 h-48 mx-auto">
-                <img 
-                  src={member.image} 
-                  alt={member.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-accent/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="flex gap-4">
-                    <a 
-                      href={member.linkedin}
-                      className="text-white hover:scale-110 transition-transform"
-                      aria-label={`${member.name}'s LinkedIn`}
-                    >
-                      <Linkedin size={24} />
-                    </a>
-                    <a 
-                      href={member.github}
-                      className="text-white hover:scale-110 transition-transform"
-                      aria-label={`${member.name}'s GitHub`}
-                    >
-                      <Github size={24} />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <h3 className="font-heading text-2xl text-text-dark mb-2">{member.name}</h3>
-              <p className="font-body text-accent mb-3">{member.role}</p>
-              <p className="font-body text-text-dark/80 text-sm leading-relaxed">
-                {member.bio}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
+    <article className="flex flex-row gap-4 sm:gap-5 items-start text-left">
+      <div className="relative w-[88px] sm:w-[100px] shrink-0 aspect-[3/4] bg-[#e8e8e8] rounded-[2px] overflow-hidden">
+        {member.image ? (
+          <img
+            src={member.image}
+            alt={hasName || hasRole ? `${member.name || ''} ${member.role || ''}`.trim() : 'Member'}
+            className="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+          />
+        ) : null}
+      </div>
+
+      <div className="flex min-w-0 flex-1 flex-col gap-0.5 pt-0.5 font-body text-text-dark">
+        {hasRole && hasName && (
+          <p className="text-[0.8125rem] sm:text-sm leading-snug text-text-dark/80">{member.role}</p>
+        )}
+        {hasRole && !hasName && (
+          <p className="text-[0.9375rem] sm:text-base font-semibold leading-snug text-text-dark">{member.role}</p>
+        )}
+        {hasName && (
+          <p className="text-[0.9375rem] sm:text-base font-semibold leading-snug text-text-dark">{member.name}</p>
+        )}
+        {hasMajor && (
+          <p className="text-[0.8125rem] sm:text-sm leading-snug text-text-dark/85">{member.major}</p>
+        )}
+        {emails.length > 0 && (
+          <div className="mt-1 flex flex-col gap-0.5">
+            {emails.map((email) => (
+              <a
+                key={email}
+                href={`mailto:${email}`}
+                className="text-[0.8125rem] sm:text-sm text-text-dark/75 break-all underline-offset-2 hover:text-accent hover:underline"
+              >
+                {email}
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    </article>
+  );
+};
+
+const Team = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const id = location.hash.replace('#', '');
+    if (!id) return;
+    const t = requestAnimationFrame(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    return () => cancelAnimationFrame(t);
+  }, [location.pathname, location.hash]);
+
+  return (
+    <section id="members" className="bg-white px-4 pb-20 pt-24 sm:px-8 sm:pb-24 sm:pt-28 lg:px-12 lg:pb-28">
+      <div className="mx-auto max-w-6xl">
+        <h1 className="mb-14 text-center font-heading text-5xl text-text-dark sm:mb-16 sm:text-6xl md:mb-20 md:text-7xl">
+          Meet the Team
+        </h1>
+
+        {memberSections.map((section) => (
+          <div key={section.id} id={section.id} className="mb-16 scroll-mt-28 md:mb-24 last:mb-0">
+            <h2 className="mb-9 text-center font-heading text-2xl text-text-dark sm:mb-10 sm:text-3xl md:mb-12">
+              {section.title}
+            </h2>
+            <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 md:gap-x-10 md:gap-y-12 lg:grid-cols-3 lg:gap-y-14">
+              {section.members.map((member) => (
+                <MemberCard key={member.id} member={member} />
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

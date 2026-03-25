@@ -1,42 +1,58 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import ProjectCard from './ProjectCard';
+import { useLocation } from 'react-router-dom';
 import { projects } from '../data/projects';
 
 const Projects = () => {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
+  const location = useLocation();
+
+  useEffect(() => {
+    const id = location.hash.replace('#', '');
+    if (!id) return;
+    const t = requestAnimationFrame(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    return () => cancelAnimationFrame(t);
+  }, [location.pathname, location.hash]);
 
   return (
-    <section id="projects" className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-bg-primary">
-      <div className="max-w-7xl mx-auto">
-        <motion.h2 
-          className="font-heading text-5xl sm:text-6xl md:text-7xl text-text-primary text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+    <section
+      id="projects"
+      className="flex min-h-screen min-h-[100svh] w-full flex-col bg-white px-4 pb-16 pt-24 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12"
+    >
+      <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col justify-center -translate-y-6 sm:-translate-y-10 md:-translate-y-14">
+        <motion.h1
+          className="mb-10 text-center font-heading text-7xl leading-[0.92] tracking-[-0.02em] text-text-dark sm:mb-12 sm:text-8xl md:mb-14 md:text-9xl lg:mb-16 lg:text-[10rem]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
           Projects
-        </motion.h2>
-        
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+        </motion.h1>
+
+        <div className="mx-auto grid w-full max-w-4xl grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
+          {projects.map((project) => (
+            <div
+              key={project.id}
+              id={project.id}
+              className="flex min-h-[200px] scroll-mt-28 items-center justify-center rounded-sm bg-[#D9D9D9] px-6 py-16 text-center sm:min-h-[220px] md:aspect-[16/10] md:min-h-0 md:py-12"
+            >
+              {project.image ? (
+                <img
+                  src={project.image}
+                  alt={project.label}
+                  className="max-h-[70%] max-w-[85%] object-contain"
+                  loading="lazy"
+                />
+              ) : (
+                <span className="font-body text-lg leading-snug text-text-dark/90 sm:text-xl">
+                  {project.label}
+                </span>
+              )}
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
