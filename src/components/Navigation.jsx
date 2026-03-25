@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Menu, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const projectLinks = [
   { label: 'Fluention', to: '/projects#fluention' },
@@ -21,6 +21,7 @@ const Navigation = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [mobileSub, setMobileSub] = useState(null);
   const location = useLocation();
+  const navigate = useNavigate();
   const [selectedYear, setSelectedYear] = useState(location.pathname === '/2024-2025' ? '2024-2025' : '2025-2026');
   const years = ['2025-2026', '2024-2025'];
   const desktopNavRef = useRef(null);
@@ -72,7 +73,7 @@ const Navigation = () => {
 
   const navigateToYear = (year) => {
     setSelectedYear(year);
-    window.location.href = year === '2025-2026' ? '/' : '/2024-2025';
+    navigate(year === '2025-2026' ? '/' : '/2024-2025');
   };
 
   const handleYearChange = (e) => {
@@ -98,7 +99,7 @@ const Navigation = () => {
 
   return (
     <motion.nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 w-full max-w-[100vw] pt-[env(safe-area-inset-top,0px)] transition-all duration-300 ${
         isScrolled ? 'bg-[#c8b7de]/95 backdrop-blur-sm shadow-lg' : 'bg-[#c8b7de]/90'
       }`}
       initial={{ y: -100 }}
@@ -106,27 +107,24 @@ const Navigation = () => {
       transition={{ duration: 0.6 }}
     >
       <div className="w-full px-4 sm:px-8 lg:px-12 py-4 flex justify-between items-center">
-        <a
-          href="/"
+        <Link
+          to="/"
           onClick={handleLinkClick}
           className="font-heading text-3xl text-text-dark hover:text-accent transition-colors leading-none"
         >
           Ø
-        </a>
+        </Link>
 
         <ul ref={desktopNavRef} className="hidden md:flex gap-5 lg:gap-8 items-center">
           <li>
-            <a
-              href="/achievements"
-              className="font-body text-sm text-text-dark hover:text-accent transition-colors"
-            >
+            <Link to="/achievements" className="font-body text-sm text-text-dark hover:text-accent transition-colors">
               Achievements
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/members" className="font-body text-sm text-text-dark hover:text-accent transition-colors">
+            <Link to="/members" className="font-body text-sm text-text-dark hover:text-accent transition-colors">
               Members
-            </a>
+            </Link>
           </li>
           <li className="relative">
             <button
@@ -189,9 +187,9 @@ const Navigation = () => {
             )}
           </li>
           <li>
-            <a href="/about-oz" className="font-body text-sm text-text-dark hover:text-accent transition-colors">
+            <Link to="/about-oz" className="font-body text-sm text-text-dark hover:text-accent transition-colors">
               About OZ
-            </a>
+            </Link>
           </li>
           <li className="relative">
             <button
@@ -252,14 +250,14 @@ const Navigation = () => {
         >
           <ul className="flex flex-col py-4 px-4 space-y-3">
             <li>
-              <a href="/achievements" onClick={closeMobile} className="font-body text-text-dark hover:text-accent transition-colors block py-1">
+              <Link to="/achievements" onClick={closeMobile} className="font-body text-text-dark hover:text-accent transition-colors block py-1">
                 Achievements
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/members" onClick={closeMobile} className="font-body text-text-dark hover:text-accent transition-colors block py-1">
+              <Link to="/members" onClick={closeMobile} className="font-body text-text-dark hover:text-accent transition-colors block py-1">
                 Members
-              </a>
+              </Link>
             </li>
             <li>
               <button
@@ -304,9 +302,9 @@ const Navigation = () => {
               )}
             </li>
             <li>
-              <a href="/about-oz" onClick={closeMobile} className="font-body text-text-dark hover:text-accent transition-colors block py-1">
+              <Link to="/about-oz" onClick={closeMobile} className="font-body text-text-dark hover:text-accent transition-colors block py-1">
                 About OZ
-              </a>
+              </Link>
             </li>
             <li>
               <label className="font-body text-text-dark/70 text-sm block mb-1" htmlFor="year-mobile">

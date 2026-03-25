@@ -92,58 +92,104 @@ const About = () => {
           viewport={{ once: true, margin: "-100px" }}
         >
           {/* 한 블록으로 묶음: overflow-hidden 제거 → floating 시 상단 잘림 방지 */}
-          <motion.div
-            variants={item}
-            className="relative -mt-[4.5rem] md:-mt-24 mb-16 min-h-[100svh] w-full overflow-visible pt-0 pb-24"
-          >
-            <div className="absolute -left-[4%] top-[10%] h-56 w-[760px] rounded-[1.65rem] border border-[#c8b7de] bg-transparent z-10" />
+          <motion.div variants={item} className="relative -mt-[4.5rem] md:-mt-24 mb-16 w-full overflow-x-hidden pt-0 pb-12 md:pb-24">
+            {/* Mobile: single column — no fixed pixel widths */}
+            <div className="flex min-h-0 flex-col gap-8 px-4 pt-6 md:hidden">
+              <h2 className="font-heading text-4xl text-text-dark sm:text-5xl">What is OZ?</h2>
 
-            <motion.div
-              className="absolute right-[11%] top-[5%] h-64 w-[470px] rounded-[1.65rem] border border-[#c8b7de] bg-bg-primary/30 flex items-center justify-center z-20"
-              animate={{ y: [0, -14, 0] }}
-              transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <span className="font-body text-5xl text-text-dark/90">사진1</span>
-            </motion.div>
+              <motion.div
+                className="mx-auto flex h-44 w-full max-w-md items-center justify-center rounded-[1.65rem] border border-[#c8b7de] bg-bg-primary/30"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <span className="font-body text-3xl text-text-dark/90 sm:text-4xl">사진1</span>
+              </motion.div>
 
-            <h2 className="absolute left-[9%] top-[47%] -translate-y-1/2 font-heading text-6xl sm:text-7xl md:text-8xl text-text-dark z-40">
-              What is OZ?
-            </h2>
+              <div className="w-full max-w-lg mx-auto rounded-[1.65rem] border border-[#c8b7de] bg-white px-6 py-10 sm:px-8 sm:py-12">
+                <p className="font-heading text-xl sm:text-2xl leading-tight text-text-dark mb-4">
+                  Build Together. Grow Together.
+                </p>
+                <p className="font-body text-base sm:text-lg leading-relaxed text-text-dark/95">
+                  아이디어를 실제 서비스로 만들고 함께 배우며 성장하는 한인 창업, 개발 동아리
+                </p>
+              </div>
 
-            <div className="absolute left-[50%] top-[50%] -translate-y-1/2 w-full max-w-[448px] rounded-[1.65rem] border border-[#c8b7de] bg-white px-8 py-14 sm:py-16 md:py-[4.5rem] z-10">
-              <p className="font-heading text-[1.5rem] leading-tight text-text-dark mb-6">Build Together. Grow Together.</p>
-              <p className="font-body text-[1.4rem] leading-relaxed text-text-dark/95">
-                아이디어를 실제 서비스로 만들고 함께 배우며 성장하는 한인 창업, 개발 동아리
-              </p>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <motion.div
+                  className="flex h-40 items-center justify-center rounded-[1.65rem] border border-[#c8b7de] bg-bg-primary/30 sm:col-span-1 sm:h-44"
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 3.3, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+                >
+                  <span className="font-body text-2xl text-text-dark/90 sm:text-3xl">사진2</span>
+                </motion.div>
+                <motion.div
+                  className="flex h-40 items-center justify-center rounded-[1.65rem] border border-[#c8b7de] bg-bg-primary/30 sm:h-44"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
+                >
+                  <span className="font-body text-2xl text-text-dark/90 sm:text-3xl">사진3</span>
+                </motion.div>
+              </div>
+
+              <button
+                type="button"
+                className="w-full max-w-lg mx-auto rounded-2xl bg-[#c8b7de] px-6 py-4 text-center font-body text-base sm:text-lg text-text-dark shadow-md hover:bg-[#b8a3d8] transition-colors"
+              >
+                오즈에 대해 자세히 알아보기 →
+              </button>
             </div>
 
-            <motion.div
-              className="absolute left-[-2%] bottom-[6%] h-64 w-[470px] rounded-[1.65rem] border border-[#c8b7de] bg-bg-primary/30 flex items-center justify-center z-20"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3.3, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-            >
-              <span className="font-body text-5xl text-text-dark/90">사진2</span>
-            </motion.div>
-            <motion.div
-              className="absolute right-[-2%] bottom-[8%] h-64 w-[470px] rounded-[1.65rem] border border-[#c8b7de] bg-bg-primary/30 flex items-center justify-center z-30"
-              animate={{ y: [0, -18, 0] }}
-              transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
-            >
-              <span className="font-body text-5xl text-text-dark/90">사진3</span>
-            </motion.div>
+            {/* Desktop: original absolute layout */}
+            <div className="relative hidden min-h-[100svh] md:block overflow-visible pb-24">
+              <div className="absolute -left-[4%] top-[10%] h-56 w-[min(760px,92vw)] max-w-[760px] rounded-[1.65rem] border border-[#c8b7de] bg-transparent z-10" />
 
-            <button
-              type="button"
-              className="absolute left-1/2 -translate-x-1/2 bottom-14 rounded-2xl bg-[#c8b7de] px-11 py-5 text-center font-body text-[1.75rem] text-text-dark shadow-md hover:bg-[#b8a3d8] transition-colors"
-            >
-              오즈에 대해 자세히 알아보기 →
-            </button>
+              <motion.div
+                className="absolute right-[11%] top-[5%] h-64 w-[min(470px,42vw)] max-w-[470px] rounded-[1.65rem] border border-[#c8b7de] bg-bg-primary/30 flex items-center justify-center z-20"
+                animate={{ y: [0, -14, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <span className="font-body text-5xl text-text-dark/90">사진1</span>
+              </motion.div>
+
+              <h2 className="absolute left-[9%] top-[47%] -translate-y-1/2 font-heading text-6xl sm:text-7xl md:text-8xl text-text-dark z-40">
+                What is OZ?
+              </h2>
+
+              <div className="absolute left-[50%] top-[50%] -translate-y-1/2 w-full max-w-[448px] rounded-[1.65rem] border border-[#c8b7de] bg-white px-8 py-14 sm:py-16 md:py-[4.5rem] z-10">
+                <p className="font-heading text-[1.5rem] leading-tight text-text-dark mb-6">Build Together. Grow Together.</p>
+                <p className="font-body text-[1.4rem] leading-relaxed text-text-dark/95">
+                  아이디어를 실제 서비스로 만들고 함께 배우며 성장하는 한인 창업, 개발 동아리
+                </p>
+              </div>
+
+              <motion.div
+                className="absolute left-[-2%] bottom-[6%] h-64 w-[min(470px,48vw)] max-w-[470px] rounded-[1.65rem] border border-[#c8b7de] bg-bg-primary/30 flex items-center justify-center z-20"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3.3, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+              >
+                <span className="font-body text-5xl text-text-dark/90">사진2</span>
+              </motion.div>
+              <motion.div
+                className="absolute right-[-2%] bottom-[8%] h-64 w-[min(470px,48vw)] max-w-[470px] rounded-[1.65rem] border border-[#c8b7de] bg-bg-primary/30 flex items-center justify-center z-30"
+                animate={{ y: [0, -18, 0] }}
+                transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
+              >
+                <span className="font-body text-5xl text-text-dark/90">사진3</span>
+              </motion.div>
+
+              <button
+                type="button"
+                className="absolute left-1/2 -translate-x-1/2 bottom-14 rounded-2xl bg-[#c8b7de] px-11 py-5 text-center font-body text-[1.75rem] text-text-dark shadow-md hover:bg-[#b8a3d8] transition-colors"
+              >
+                오즈에 대해 자세히 알아보기 →
+              </button>
+            </div>
           </motion.div>
 
           <motion.section
             id="studies"
             variants={item}
-            className="mt-4 min-h-[100svh] flex flex-col bg-white px-4 sm:px-8 lg:px-12 pt-12 pb-16"
+            className="mt-4 flex min-h-0 flex-col bg-white px-4 pt-10 pb-16 sm:px-8 md:min-h-[100svh] lg:px-12 lg:pt-12"
           >
             <h3 className="font-heading text-5xl sm:text-6xl text-text-dark text-center mb-3">
               What we do?

@@ -23,7 +23,7 @@ const Projects = () => {
     >
       <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col justify-center -translate-y-6 sm:-translate-y-10 md:-translate-y-14">
         <motion.h1
-          className="mb-10 text-center font-heading text-7xl leading-[0.92] tracking-[-0.02em] text-text-dark sm:mb-12 sm:text-8xl md:mb-14 md:text-9xl lg:mb-16 lg:text-[10rem]"
+          className="mb-8 text-center font-heading text-5xl leading-[0.92] tracking-[-0.02em] text-text-dark sm:mb-12 sm:text-6xl md:mb-14 md:text-8xl lg:mb-16 lg:text-9xl xl:text-[10rem]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

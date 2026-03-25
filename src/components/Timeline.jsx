@@ -97,7 +97,7 @@ const Timeline = () => {
                       isLeft ? 'md:pr-8' : 'md:ml-auto md:pl-8'
                     }`}
                   >
-                    <div className="bg-bg-secondary p-6 sm:p-7 md:p-8 rounded-lg shadow-lg text-left">
+                    <div className="min-w-0 break-words bg-bg-secondary p-6 sm:p-7 md:p-8 rounded-lg shadow-lg text-left">
                       <div className="flex flex-wrap items-center gap-3 mb-3 justify-start">
                         <span className="font-heading text-4xl md:text-5xl text-accent">{achievement.dateLabel}</span>
                       </div>
