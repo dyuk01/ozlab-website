@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { projects } from '../data/projects';
 
@@ -36,7 +37,7 @@ const Projects = () => {
             <div
               key={project.id}
               id={project.id}
-              className="flex min-h-[200px] scroll-mt-28 items-center justify-center rounded-sm bg-[#D9D9D9] px-6 py-16 text-center sm:min-h-[220px] md:aspect-[16/10] md:min-h-0 md:py-12"
+              className="flex min-h-[200px] scroll-mt-28 flex-col items-center justify-center rounded-sm bg-[#D9D9D9] px-6 py-10 text-center sm:min-h-[220px] md:aspect-[16/10] md:min-h-0 md:py-8"
             >
               {project.image ? (
                 <img
@@ -50,6 +51,19 @@ const Projects = () => {
                   {project.label}
                 </span>
               )}
+              {project.shortDescription ? (
+                <p className="mt-4 max-w-[24rem] font-body text-sm leading-relaxed text-text-dark/80">
+                  {project.shortDescription}
+                </p>
+              ) : null}
+              {project.memberSectionId ? (
+                <Link
+                  to={`/members#${project.memberSectionId}`}
+                  className="mt-3 font-body text-sm text-text-dark/75 underline-offset-2 transition-colors hover:text-accent hover:underline"
+                >
+                  팀 멤버 보기 →
+                </Link>
+              ) : null}
             </div>
           ))}
         </div>

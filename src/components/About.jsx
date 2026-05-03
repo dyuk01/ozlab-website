@@ -229,7 +229,7 @@ const About = () => {
                   <div className="flex flex-wrap items-center gap-5 sm:gap-8 mb-8">
                     <div className="flex h-16 w-16 shrink-0 items-center justify-center">
                       <img
-                        src={publicAsset('assets/images/oz_logo.webp')}
+                        src={publicAsset('assets/logo/oz_logo.webp')}
                         alt="OZ LAB"
                         className="h-full w-full object-contain"
                         width={64}
@@ -239,7 +239,7 @@ const About = () => {
                     </div>
                     <div className="flex h-12 min-h-[3rem] min-w-0 max-w-[220px] items-center justify-center sm:max-w-[260px]">
                       <img
-                        src={publicAsset('assets/images/ms_logo.webp')}
+                        src={publicAsset('assets/logo/ms_logo.webp')}
                         alt="멋쟁이사자처럼"
                         className="h-10 w-auto max-w-full object-contain object-left sm:h-12"
                         width={200}

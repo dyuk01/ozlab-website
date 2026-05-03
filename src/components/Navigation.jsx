@@ -115,7 +115,7 @@ const Navigation = () => {
           aria-label="OZ LAB home"
         >
           <img
-            src={publicAsset('assets/images/oz_logo.webp')}
+            src={publicAsset('assets/logo/oz_logo.webp')}
             alt=""
             className="block h-full w-full object-contain"
             width={80}
