@@ -50,7 +50,23 @@ function githubPagesSpaSupport() {
     },
     writeBundle() {
       const root = resolve(process.cwd(), 'dist')
-      copyFileSync(resolve(root, 'index.html'), resolve(root, '404.html'))
+      const indexPath = resolve(root, 'index.html')
+      copyFileSync(indexPath, resolve(root, '404.html'))
+      const indexHtml = readFileSync(indexPath, 'utf8')
+      const redirectScript = `<script>
+  (function () {
+    var base = ${JSON.stringify(base.endsWith('/') ? base : `${base}/`)};
+    var path = window.location.pathname;
+    if (path.indexOf(base) !== 0 || window.location.hash) return;
+    var route = path.slice(base.length).replace(/^\\//, '');
+    if (!route) return;
+    window.location.replace(base + '#/' + route + window.location.search);
+  }());
+</script>`
+      writeFileSync(
+        resolve(root, '404.html'),
+        indexHtml.replace('</head>', `${redirectScript}\n  </head>`)
+      )
       writeFileSync(resolve(root, '.nojekyll'), '')
     },
   }
