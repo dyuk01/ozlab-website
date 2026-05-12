@@ -110,21 +110,9 @@ const Team = () => {
 
         {memberSections.map((section) => (
           <div key={section.id} id={section.id} className="mb-16 scroll-mt-28 md:mb-24 last:mb-0">
-            <h2 className="mb-9 text-center font-heading text-2xl text-text-dark sm:mb-10 sm:text-3xl md:mb-12">
+            <h2 className="mb-10 text-center font-heading text-2xl text-text-dark sm:mb-12 sm:text-3xl md:mb-14">
               {section.title}
             </h2>
-            {section.intro ? (
-              <p className="mx-auto mb-3 max-w-3xl text-center font-body text-sm leading-relaxed text-text-dark/85 sm:text-base">
-                {section.intro}
-              </p>
-            ) : null}
-            {section.description?.length ? (
-              <div className="mx-auto mb-10 max-w-3xl space-y-2 text-center font-body text-sm leading-relaxed text-text-dark/75 sm:text-base">
-                {section.description.map((line) => (
-                  <p key={line}>{line}</p>
-                ))}
-              </div>
-            ) : null}
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 md:gap-x-10 md:gap-y-12 lg:grid-cols-3 lg:gap-y-14">
               {section.members.map((member) => (
                 <MemberCard key={member.id} member={member} />
