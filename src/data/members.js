@@ -61,7 +61,7 @@ export const memberSections = [
         major: 'Game Design & Development',
         emails: ['park1173@purdue.edu', 'junepark720@gmail.com'],
         linkedin: 'https://www.linkedin.com/in/june-park-09b0b1390',
-        image: '/assets/members/study/be/박준형.webp'
+        image: '/assets/members/study/be/junhyeong-park.webp'
       },
       {
         id: 'ex-5',
@@ -80,7 +80,7 @@ export const memberSections = [
         major: 'Computer Engineering',
         emails: ['kim2903@purdue.edu', 'heesookim1357@gmail.com'],
         linkedin: 'https://www.linkedin.com/in/heesookiim/',
-        image: '/assets/members/study/김희수.webp'
+        image: '/assets/members/study/heesoo-kim.webp'
       },
       {
         id: 'ex-8',
@@ -89,7 +89,7 @@ export const memberSections = [
         major: 'Business Analytics and Information Management',
         emails: ['yang2339@purdue.edu', 'gyslyyy15@gmail.com'],
         linkedin: 'https://www.linkedin.com/in/sominyang',
-        image: '/assets/members/study/양소민.webp'
+        image: '/assets/members/study/somin-yang.webp'
       }
     ]
   },
@@ -141,7 +141,7 @@ export const memberSections = [
         major: 'Game Design & Development',
         emails: ['park1173@purdue.edu', 'junepark720@gmail.com'],
         linkedin: 'https://www.linkedin.com/in/june-park-09b0b1390',
-        image: '/assets/members/study/be/박준형.webp'
+        image: '/assets/members/study/be/junhyeong-park.webp'
       },
       {
         id: 'be-1',
@@ -149,7 +149,7 @@ export const memberSections = [
         name: '김예령',
         major: 'Data Analytics',
         emails: ['kim4351@purdue.edu', 'yehryoung.kim@gmail.com'],
-        image: '/assets/members/study/be/김예령.webp'
+        image: '/assets/members/study/be/yehryoung-kim.webp'
       },
       {
         id: 'be-2',
@@ -158,7 +158,7 @@ export const memberSections = [
         major: 'Computer Engineering',
         emails: ['lee3569@purdue.edu', 'nana8380@naver.com'],
         linkedin: 'https://www.linkedin.com/in/nana-lee-5693a9213/',
-        image: '/assets/members/study/be/이나나.webp'
+        image: '/assets/members/study/be/nana-lee.webp'
       },
       {
         id: 'be-3',
@@ -166,7 +166,7 @@ export const memberSections = [
         name: '조무현',
         major: 'Data analyst',
         emails: ['cho702@purdue.edu', 'muhyeon7103@gmail.com'],
-        image: '/assets/members/study/be/조무현.webp'
+        image: '/assets/members/study/be/muhyeon-cho.webp'
       }
     ]
   },
@@ -256,7 +256,7 @@ export const memberSections = [
         major: 'Business Analytics and Information Management',
         emails: ['choi626@purdue.edu', 'ijchoi012@gmail.com'],
         linkedin: 'https://www.linkedin.com/in/injae-choi-dave-choi626',
-        image: '/assets/members/project/fl/최인재.webp'
+        image: '/assets/members/project/fl/injae-choi.webp'
       },
       {
         id: 'fl-2',
@@ -265,7 +265,7 @@ export const memberSections = [
         major: 'Marketing & Business Analysis and Information Management',
         emails: ['seo137@purdue.edu', 'allyseo0621@gmail.com'],
         linkedin: 'https://www.linkedin.com/in/minji-seo-4540412bb',
-        image: '/assets/members/project/fl/서민지.webp'
+        image: '/assets/members/project/fl/minji-seo.webp'
       },
       {
         id: 'fl-3',
@@ -274,7 +274,7 @@ export const memberSections = [
         major: 'Computer Science',
         emails: ['kim4068@purdue.edu', 'gmldnjskim@gmail.com'],
         linkedin: 'https://www.linkedin.com/in/heewon-kim-538b91224',
-        image: '/assets/members/project/fl/김희원.webp'
+        image: '/assets/members/project/fl/heewon-kim.webp'
       },
       {
         id: 'fl-4',
@@ -283,7 +283,7 @@ export const memberSections = [
         major: 'Computer Science',
         emails: ['cho532@purdue.edu', 'hyunji.cho55@gmail.com'],
         linkedin: 'https://www.linkedin.com/in/hyunjicho-sophia/',
-        image: '/assets/members/project/fl/조현지.webp'
+        image: '/assets/members/project/fl/hyunji-cho.webp'
       },
       {
         id: 'fl-5',
@@ -292,7 +292,7 @@ export const memberSections = [
         major: 'Computer Science',
         emails: ['lee5051@purdue.edu', 'noveau20@gmail.com'],
         linkedin: 'https://www.linkedin.com/in/jungyounlee/',
-        image: '/assets/members/project/fl/이정연.webp'
+        image: '/assets/members/project/fl/jungyoun-lee.webp'
       }
     ]
   },
@@ -307,7 +307,7 @@ export const memberSections = [
         major: 'Marketing (Concentration in Data Analytics)',
         emails: ['yoon309@purdue.edu', 'rhombic02@gmail.com'],
         linkedin: 'https://www.linkedin.com/in/seonmin-yoon',
-        image: '/assets/members/project/bs/윤선민.webp'
+        image: '/assets/members/project/bs/seonmin-yoon.webp'
       },
       {
         id: 'bs-2',
@@ -316,7 +316,7 @@ export const memberSections = [
         major: 'Supply Chain Management',
         emails: ['kim3639@purdue.edu', 'rlads1324@gmail.com'],
         linkedin: 'https://kr.linkedin.com/in/dongseokkim523',
-        image: '/assets/members/project/bs/김동석.webp'
+        image: '/assets/members/project/bs/dongseok-kim.webp'
       },
       {
         id: 'bs-3',
@@ -325,7 +325,7 @@ export const memberSections = [
         major: 'Computer Science',
         emails: ['kang497@purdue.edu', 'gkang901@gmail.com'],
         linkedin: 'https://www.linkedin.com/in/gunwoo-kang/',
-        image: '/assets/members/project/bs/김건우.webp'
+        image: '/assets/members/project/bs/gunwoo-kang.webp'
       },
       {
         id: 'bs-4',
@@ -334,7 +334,7 @@ export const memberSections = [
         major: 'Computer Science',
         emails: ['bijang@purdue.edu', 'bhj37193@gmail.com'],
         linkedin: 'https://www.linkedin.com/in/bohyeon-jang-a709ab238/',
-        image: '/assets/members/project/bs/장보현.webp'
+        image: '/assets/members/project/bs/bohyeon-jang.webp'
       },
       {
         id: 'bs-5',
@@ -343,7 +343,7 @@ export const memberSections = [
         major: 'Integrated Business and Engineering',
         emails: ['choi753@purdue.edu', 'ycc030207@gmail.com'],
         linkedin: 'https://www.linkedin.com/in/choiyechan/',
-        image: '/assets/members/project/bs/최예찬.webp'
+        image: '/assets/members/project/bs/yechan-choi.webp'
       }
     ]
   }

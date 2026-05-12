@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { memberSections } from '../data/members';
 import { publicAsset } from '../utils/publicAsset';
 
-const FALLBACK_MEMBER_IMAGE = publicAsset('assets/members/placeholder.webp');
+const FALLBACK_MEMBER_IMAGE = publicAsset('assets/logo/oz_logo.webp');
 
 const LinkedInMark = ({ className }) => (
   <svg viewBox="0 0 24 24" aria-hidden className={className}>
