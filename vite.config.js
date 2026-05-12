@@ -1,9 +1,25 @@
-import { copyFileSync, writeFileSync } from 'node:fs'
+import { copyFileSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-/** GitHub Pages 프로젝트 사이트: `https://<user>.github.io/<repo>/` → base는 `/<repo>/` */
+function baseFromPackageHomepage() {
+  try {
+    const pkgPath = fileURLToPath(new URL('./package.json', import.meta.url))
+    const pkg = JSON.parse(readFileSync(pkgPath, 'utf8'))
+    const h = pkg.homepage?.trim()
+    if (!h) return '/ozlab-website/'
+    const u = new URL(h)
+    const p = u.pathname.replace(/\/$/, '')
+    if (!p) return '/'
+    return p.endsWith('/') ? p : `${p}/`
+  } catch {
+    return '/ozlab-website/'
+  }
+}
+
+/** GitHub Pages 프로젝트 사이트: `https://<user>.github.io/<repo>/` → base `/<repo>/` */
 function productionBase() {
   const fromEnv = process.env.VITE_PAGES_BASE?.trim()
   if (fromEnv) {
@@ -12,10 +28,10 @@ function productionBase() {
   }
   const repo = process.env.GITHUB_REPOSITORY?.split('/')?.[1]?.trim()
   if (repo) return `/${repo}/`
-  return '/ozlab-website/'
+  return baseFromPackageHomepage()
 }
 
-/** GitHub Pages에서 클라이언트 라우트 직접 URL·리로드 시 SPA 셸을 쓰려면 dist에 404.html 필요 */
+/** 브랜치 배포(dist) 시 SPA 라우트 리로드용 404.html + Jekyll 비활성화 */
 function githubPagesSpaSupport() {
   let base = '/'
   return {
@@ -40,8 +56,15 @@ function githubPagesSpaSupport() {
   }
 }
 
-// `npm run dev` → `/` · `build` → 위 규칙 (CI에서는 저장소 이름 자동 반영)
-export default defineConfig(({ command }) => ({
-  plugins: [react(), command === 'build' && githubPagesSpaSupport()].filter(Boolean),
-  base: command === 'build' ? productionBase() : '/',
-}))
+// `npm run dev` → `/` · `npm run build` / `npm run preview` → package.json homepage 기준 base
+export default defineConfig(({ command }) => {
+  const pagesBase = productionBase()
+  const usePagesBase =
+    command === 'build' ||
+    (command === 'serve' && process.env.npm_lifecycle_event === 'preview')
+
+  return {
+    plugins: [react(), command === 'build' && githubPagesSpaSupport()].filter(Boolean),
+    base: usePagesBase ? pagesBase : '/',
+  }
+})
