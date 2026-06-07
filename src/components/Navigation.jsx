@@ -81,6 +81,12 @@ const Navigation = () => {
     navigateToYear(e.target.value);
   };
 
+  const handleLogoClick = () => {
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+    setMobileSub(null);
+  };
+
   const closeMobile = () => {
     setIsMobileMenuOpen(false);
     setMobileSub(null);
@@ -110,7 +116,7 @@ const Navigation = () => {
       <div className="flex w-full items-center justify-between px-4 py-0 sm:px-8 sm:py-0.5 lg:px-12">
         <Link
           to="/"
-          onClick={handleLinkClick}
+          onClick={handleLogoClick}
           className="flex h-16 w-16 shrink-0 items-center justify-center leading-none transition-opacity hover:opacity-90 sm:h-20 sm:w-20"
           aria-label="OZ LAB home"
         >

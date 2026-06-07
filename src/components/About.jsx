@@ -3,6 +3,40 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { publicAsset } from '../utils/publicAsset';
 
+const aboutPhotos = [
+  {
+    src: 'assets/about/oz-members-staircase.webp',
+    alt: 'OZ members posing together on a staircase',
+    position: 'object-center'
+  },
+  {
+    src: 'assets/about/oz-project-presentation.webp',
+    alt: 'OZ member presenting a project in a lecture room',
+    position: 'object-center'
+  },
+  {
+    src: 'assets/about/oz-fluention-team.webp',
+    alt: 'Fluention project team standing after a presentation',
+    position: 'object-center'
+  }
+];
+
+const FloatingPhoto = ({ photo, className, animate, transition }) => (
+  <motion.div
+    className={`${className} overflow-hidden border border-[#c8b7de] bg-bg-primary/30`}
+    animate={animate}
+    transition={transition}
+  >
+    <img
+      src={publicAsset(photo.src)}
+      alt={photo.alt}
+      className={`h-full w-full object-cover ${photo.position}`}
+      loading="lazy"
+      decoding="async"
+    />
+  </motion.div>
+);
+
 const About = () => {
   const [activeTab, setActiveTab] = useState('studies');
 
@@ -98,13 +132,12 @@ const About = () => {
             <div className="flex min-h-0 flex-col gap-8 px-4 pt-6 md:hidden">
               <h2 className="font-heading text-4xl text-text-dark sm:text-5xl">What is OZ?</h2>
 
-              <motion.div
-                className="mx-auto flex h-44 w-full max-w-md items-center justify-center rounded-[1.65rem] border border-[#c8b7de] bg-bg-primary/30"
+              <FloatingPhoto
+                photo={aboutPhotos[0]}
+                className="mx-auto h-44 w-full max-w-md rounded-[1.65rem]"
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                <span className="font-body text-3xl text-text-dark/90 sm:text-4xl">사진1</span>
-              </motion.div>
+              />
 
               <div className="w-full max-w-lg mx-auto rounded-[1.65rem] border border-[#c8b7de] bg-white px-6 py-10 sm:px-8 sm:py-12">
                 <p className="font-heading text-xl sm:text-2xl leading-tight text-text-dark mb-4">
@@ -116,20 +149,18 @@ const About = () => {
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <motion.div
-                  className="flex h-40 items-center justify-center rounded-[1.65rem] border border-[#c8b7de] bg-bg-primary/30 sm:col-span-1 sm:h-44"
+                <FloatingPhoto
+                  photo={aboutPhotos[1]}
+                  className="h-40 rounded-[1.65rem] sm:col-span-1 sm:h-44"
                   animate={{ y: [0, -6, 0] }}
                   transition={{ duration: 3.3, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-                >
-                  <span className="font-body text-2xl text-text-dark/90 sm:text-3xl">사진2</span>
-                </motion.div>
-                <motion.div
-                  className="flex h-40 items-center justify-center rounded-[1.65rem] border border-[#c8b7de] bg-bg-primary/30 sm:h-44"
+                />
+                <FloatingPhoto
+                  photo={aboutPhotos[2]}
+                  className="h-40 rounded-[1.65rem] sm:h-44"
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
-                >
-                  <span className="font-body text-2xl text-text-dark/90 sm:text-3xl">사진3</span>
-                </motion.div>
+                />
               </div>
 
               <button
@@ -144,13 +175,12 @@ const About = () => {
             <div className="relative hidden min-h-[100svh] md:block overflow-visible pb-24">
               <div className="absolute -left-[4%] top-[10%] h-56 w-[min(760px,92vw)] max-w-[760px] rounded-[1.65rem] border border-[#c8b7de] bg-transparent z-10" />
 
-              <motion.div
-                className="absolute right-[11%] top-[5%] h-64 w-[min(470px,42vw)] max-w-[470px] rounded-[1.65rem] border border-[#c8b7de] bg-bg-primary/30 flex items-center justify-center z-20"
+              <FloatingPhoto
+                photo={aboutPhotos[0]}
+                className="absolute right-[11%] top-[5%] z-20 h-64 w-[min(470px,42vw)] max-w-[470px] rounded-[1.65rem]"
                 animate={{ y: [0, -14, 0] }}
                 transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                <span className="font-body text-5xl text-text-dark/90">사진1</span>
-              </motion.div>
+              />
 
               <h2 className="absolute left-[9%] top-[47%] -translate-y-1/2 font-heading text-6xl sm:text-7xl md:text-8xl text-text-dark z-40">
                 What is OZ?
@@ -163,20 +193,18 @@ const About = () => {
                 </p>
               </div>
 
-              <motion.div
-                className="absolute left-[-2%] bottom-[6%] h-64 w-[min(470px,48vw)] max-w-[470px] rounded-[1.65rem] border border-[#c8b7de] bg-bg-primary/30 flex items-center justify-center z-20"
+              <FloatingPhoto
+                photo={aboutPhotos[1]}
+                className="absolute left-[-2%] bottom-[6%] z-20 h-64 w-[min(470px,48vw)] max-w-[470px] rounded-[1.65rem]"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3.3, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-              >
-                <span className="font-body text-5xl text-text-dark/90">사진2</span>
-              </motion.div>
-              <motion.div
-                className="absolute right-[-2%] bottom-[8%] h-64 w-[min(470px,48vw)] max-w-[470px] rounded-[1.65rem] border border-[#c8b7de] bg-bg-primary/30 flex items-center justify-center z-30"
+              />
+              <FloatingPhoto
+                photo={aboutPhotos[2]}
+                className="absolute right-[-2%] bottom-[8%] z-30 h-64 w-[min(470px,48vw)] max-w-[470px] rounded-[1.65rem]"
                 animate={{ y: [0, -18, 0] }}
                 transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
-              >
-                <span className="font-body text-5xl text-text-dark/90">사진3</span>
-              </motion.div>
+              />
 
               <button
                 type="button"
