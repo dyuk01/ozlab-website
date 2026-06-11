@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import {
   ArrowRight,
   BarChart3,
@@ -316,54 +316,75 @@ const ProjectSection = ({ project, index }) => {
 };
 
 const Projects = () => {
+  const [fluention, brandsage] = projects;
+
+  return (
+    <main id="projects" className="min-h-screen min-h-[100svh] overflow-hidden bg-white pt-24">
+      <section className="relative flex min-h-[calc(100vh-6rem)] min-h-[calc(100svh-6rem)] w-full flex-col items-center justify-center gap-10 bg-white px-6 py-16">
+        <div className="text-center">
+          <p className="font-heading text-sm uppercase tracking-[0.3em] text-text-dark/60">OZ Lab Projects</p>
+          <h1 className="mt-3 font-heading text-3xl text-text-dark sm:text-4xl">Choose a project</h1>
+        </div>
+
+        <div className="grid w-full max-w-4xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+          <Link
+            to="/projects/fluention"
+            className="group flex aspect-[4/3] flex-col items-center justify-center gap-6 rounded-3xl border border-text-dark/10 bg-white p-8 shadow-lg outline-none transition duration-300 hover:-translate-y-1 hover:shadow-2xl focus-visible:ring-2 focus-visible:ring-accent"
+            aria-label="Open Fluention project"
+          >
+            <img
+              src={publicAsset(fluention.logo)}
+              alt="Fluention logo"
+              className="h-40 w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
+              decoding="async"
+            />
+            <span className="inline-flex items-center gap-2 font-heading text-sm uppercase tracking-[0.2em] text-text-dark/70 transition-colors group-hover:text-text-dark">
+              View Fluention
+              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </span>
+          </Link>
+
+          <Link
+            to="/projects/brandsage"
+            className="group flex aspect-[4/3] flex-col items-center justify-center gap-6 rounded-3xl p-8 outline-none ring-1 ring-white/10 transition duration-300 hover:-translate-y-1 hover:shadow-2xl focus-visible:ring-2 focus-visible:ring-white"
+            style={{ backgroundColor: brandsage.accent }}
+            aria-label="Open Brandsage project"
+          >
+            <span className="font-heading text-4xl text-white transition-transform duration-300 group-hover:scale-105 sm:text-5xl">
+              Brandsage
+            </span>
+            <span className="inline-flex items-center gap-2 font-heading text-sm uppercase tracking-[0.2em] text-white/80 transition-colors group-hover:text-white">
+              View Brandsage
+              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </span>
+          </Link>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export const ProjectDetail = () => {
+  const { projectId } = useParams();
   const location = useLocation();
+  const project = projects.find((item) => item.id === projectId);
 
   useEffect(() => {
-    const id = location.hash.replace('#', '');
-    if (!id) return;
+    if (!location.hash) return;
     const t = requestAnimationFrame(() => {
-      const el = document.getElementById(id);
+      const el = document.getElementById(location.hash.replace('#', ''));
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
     return () => cancelAnimationFrame(t);
-  }, [location.pathname, location.hash]);
+  }, [location.hash]);
+
+  if (!project) {
+    return <Navigate to="/projects" replace />;
+  }
 
   return (
-    <main id="projects" className="min-h-screen min-h-[100svh] bg-white pt-24">
-      <section className="bg-white px-4 pb-10 pt-8 sm:px-8 sm:pb-12 sm:pt-10 lg:px-12">
-        <motion.div
-          className="mx-auto max-w-7xl"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="mb-4 text-center font-body text-sm uppercase tracking-[0.2em] text-text-dark/55">
-            2025-2026 OZ Lab
-          </p>
-          <h1 className="text-center font-heading text-6xl leading-[0.9] text-text-dark sm:text-7xl md:text-8xl lg:text-[8rem]">
-            Projects
-          </h1>
-          <p className="mx-auto mt-5 max-w-3xl text-center font-body text-base leading-relaxed text-text-dark/72 sm:text-lg">
-            팀별 Canva pitch deck 내용을 웹 페이지로 옮긴 프로젝트 쇼케이스입니다.
-          </p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            {projects.map((project) => (
-              <a
-                key={project.id}
-                href={`#${project.id}`}
-                className="inline-flex items-center gap-2 rounded-md border border-text-dark/15 px-5 py-3 font-body text-sm text-text-dark transition-colors hover:border-accent hover:text-accent"
-              >
-                {project.name}
-                <ArrowRight size={16} />
-              </a>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {projects.map((project, index) => (
-        <ProjectSection key={project.id} project={project} index={index} />
-      ))}
+    <main className="min-h-screen min-h-[100svh] bg-white pt-24">
+      <ProjectSection project={project} index={project.id === 'brandsage' ? 1 : 0} />
     </main>
   );
 };

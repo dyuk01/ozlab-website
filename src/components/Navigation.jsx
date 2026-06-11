@@ -4,11 +4,6 @@ import { ChevronDown, Menu, X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { publicAsset } from '../utils/publicAsset';
 
-const projectLinks = [
-  { label: 'Fluention', to: '/projects#fluention' },
-  { label: 'Brandsage', to: '/projects#brandsage' }
-];
-
 const studyLinks = [
   { label: 'Frontend', to: '/members#study-fe' },
   { label: 'Backend', to: '/members#study-be' },
@@ -58,20 +53,6 @@ const Navigation = () => {
     };
   }, []);
 
-  const handleLinkClick = (e) => {
-    const targetId = e.currentTarget.getAttribute('href');
-    if (!targetId || !targetId.startsWith('#')) {
-      setIsMobileMenuOpen(false);
-      return;
-    }
-    e.preventDefault();
-    const element = document.querySelector(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-    }
-  };
-
   const navigateToYear = (year) => {
     setSelectedYear(year);
     navigate(year === '2025-2026' ? '/' : '/2024-2025');
@@ -97,9 +78,6 @@ const Navigation = () => {
 
   const dropdownPanelRightClass =
     'absolute right-0 top-full z-[60] mt-2 min-w-[11rem] rounded-xl border border-text-dark/10 bg-white py-2 shadow-lg';
-
-  const dropdownItemClass =
-    'block w-full px-4 py-2.5 text-left font-body text-sm text-text-dark transition-colors hover:bg-[#c8b7de]/40';
 
   const dropdownItemButtonClass =
     'flex w-full items-center gap-2 px-4 py-2.5 text-left font-body text-sm text-text-dark transition-colors hover:bg-[#c8b7de]/40';
@@ -141,35 +119,10 @@ const Navigation = () => {
               Members
             </Link>
           </li>
-          <li className="relative">
-            <button
-              type="button"
-              aria-expanded={openDropdown === 'projects'}
-              aria-haspopup="true"
-              onClick={() => setOpenDropdown(openDropdown === 'projects' ? null : 'projects')}
-              className="font-body text-sm text-text-dark hover:text-accent transition-colors inline-flex items-center gap-1"
-            >
+          <li>
+            <Link to="/projects" className="font-body text-sm text-text-dark hover:text-accent transition-colors">
               Projects
-              <ChevronDown
-                size={14}
-                className={`shrink-0 transition-transform ${openDropdown === 'projects' ? 'rotate-180' : ''}`}
-              />
-            </button>
-            {openDropdown === 'projects' && (
-              <div className={dropdownPanelClass} role="menu">
-                {projectLinks.map((item) => (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    role="menuitem"
-                    className={dropdownItemClass}
-                    onClick={() => setOpenDropdown(null)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
+            </Link>
           </li>
           <li className="relative">
             <button
@@ -275,25 +228,9 @@ const Navigation = () => {
               </Link>
             </li>
             <li>
-              <button
-                type="button"
-                onClick={() => setMobileSub(mobileSub === 'projects' ? null : 'projects')}
-                className="font-body text-text-dark hover:text-accent transition-colors flex w-full items-center justify-between py-1"
-              >
+              <Link to="/projects" onClick={closeMobile} className="font-body text-text-dark hover:text-accent transition-colors block py-1">
                 Projects
-                <ChevronDown size={16} className={mobileSub === 'projects' ? 'rotate-180' : ''} />
-              </button>
-              {mobileSub === 'projects' && (
-                <ul className="mt-2 ml-3 border-l border-accent/30 pl-3 space-y-2">
-                  {projectLinks.map((item) => (
-                    <li key={item.to}>
-                      <Link to={item.to} className="font-body text-sm text-text-dark/90 block py-0.5" onClick={closeMobile}>
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
+              </Link>
             </li>
             <li>
               <button

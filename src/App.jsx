@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import About from './components/About';
-import Projects from './components/Projects';
+import Projects, { ProjectDetail } from './components/Projects';
 import Team from './components/Team';
 import Timeline from './components/Timeline';
 import Footer from './components/Footer';
@@ -45,6 +45,12 @@ const ProjectsPage = () => (
   </PageLayout>
 );
 
+const ProjectDetailPage = () => (
+  <PageLayout>
+    <ProjectDetail />
+  </PageLayout>
+);
+
 const StudiesPage = () => (
   <PageLayout>
     <About />
@@ -65,6 +71,7 @@ function App() {
       <Route path="/achievements" element={<AchievementsPage />} />
       <Route path="/members" element={<MembersPage />} />
       <Route path="/projects" element={<ProjectsPage />} />
+      <Route path="/projects/:projectId" element={<ProjectDetailPage />} />
       <Route path="/studies" element={<StudiesPage />} />
       <Route path="/about-oz" element={<AboutOZPage />} />
       <Route path="*" element={<HomePage />} />
